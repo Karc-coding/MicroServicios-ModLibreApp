@@ -1,0 +1,35 @@
+services:
+  mysql:
+    image: mysql:8
+    ports:
+     - 3306:3306
+    volumes:
+     - ~/apps/mysql:/var/lib/mysql
+    environment:
+     - MYSQL_ROOT_PASSWORD=karc
+     - MYSQL_PASSWORD=12345
+     - MYSQL_USER=krojasco
+     - MYSQL_DATABASE=producto 
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkinlibapp
+    ports:
+      - "9415:9411"
+    networks:
+      - spring
+  rabbitmq:
+    image: rabbitmq:3.10.5-management-alpine
+    container_name: rabbitmqlibapp
+    ports:
+      - "5675:5672"
+      - "15675:15672"
+    networks:
+      - spring
+
+networks:
+  spring:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
