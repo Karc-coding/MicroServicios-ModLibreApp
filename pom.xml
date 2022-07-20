@@ -6,7 +6,10 @@
 	<modules>
 		<module>producto</module>
         <module>eureka-server</module>
-    </modules>
+        <module>apigateway</module>
+        <module>validarproducto</module>
+		<module>openfeign</module>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

@@ -2,14 +2,14 @@ services:
   mysql:
     image: mysql:8
     ports:
-     - 3306:3306
+     - 3006:3306
     volumes:
      - ~/apps/mysql:/var/lib/mysql
     environment:
      - MYSQL_ROOT_PASSWORD=karc
      - MYSQL_PASSWORD=12345
      - MYSQL_USER=krojasco
-     - MYSQL_DATABASE=producto 
+     - MYSQL_DATABASE=producto
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkinlibapp
@@ -29,7 +29,3 @@ services:
 networks:
   spring:
     driver: bridge
-
-volumes:
-  postgres:
-  pgadmin:

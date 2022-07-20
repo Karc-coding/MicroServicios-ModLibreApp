@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("API/v1/product")
+@RequestMapping("api/v1/product")
 public class LibroController {
 
     private final LibroService libroService;

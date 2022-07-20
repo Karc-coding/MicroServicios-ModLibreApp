@@ -1,0 +1,28 @@
+server:
+  port: 8074
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/product/**
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/author/**
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/category/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8075/eureka
+    fetch-registry: true
+    register-with-eureka: true
