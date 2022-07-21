@@ -9,7 +9,8 @@
         <module>apigateway</module>
         <module>validarproducto</module>
 		<module>openfeign</module>
-	</modules>
+        <module>notificacion</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

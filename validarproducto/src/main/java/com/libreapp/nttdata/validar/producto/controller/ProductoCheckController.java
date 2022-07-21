@@ -1,5 +1,6 @@
 package com.libreapp.nttdata.validar.producto.controller;
 
+import com.libreapp.nttdata.openfeign.validar.producto.ProductoCheckResponse;
 import com.libreapp.nttdata.validar.producto.service.ProductoCheckService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ public class ProductoCheckController {
     private final ProductoCheckService productoCheckService;
 
     @GetMapping
-    public ProductoCheckResponse isRepeat(@RequestParam(name = "id") long id, @RequestParam(name = "serie") String serie) {
+    public ProductoCheckResponse isRepeat(@RequestParam(name = "id") Long id, @RequestParam(name = "serie") String serie) {
         log.info("Validar serie de producto: ", serie);
         return new ProductoCheckResponse(productoCheckService.esRepetido(id, serie));
     }

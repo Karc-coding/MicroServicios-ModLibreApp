@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: api-gateway
+  zipkin:
+    base-url: http://localhost:9415
   cloud:
     gateway:
       routes:
@@ -19,6 +21,10 @@ spring:
           uri: lb://PRODUCTO
           predicates:
             - Path=/api/v1/category/**
+        - id: validarproducto
+          uri: lb://VALIDARPRODUCTO
+          predicates:
+            - Path=/api/v1/product-check/**
 
 eureka:
   client:

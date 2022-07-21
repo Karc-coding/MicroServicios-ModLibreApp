@@ -30,7 +30,7 @@ public class Libro {
     private String yearBook;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "categories_id", nullable = false)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Categoria categoria;
 
@@ -41,7 +41,7 @@ public class Libro {
     private Integer stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authors_id")
+    @JoinColumn(name = "authors_id", nullable = false)
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private Autor autor;
 }

@@ -1,4 +1,4 @@
-package com.libreapp.nttdata.validar.producto;
+package com.libreapp.nttdata.openfeign.validar.producto;
 
 public record ProductoCheckResponse(boolean repetido) {
 }

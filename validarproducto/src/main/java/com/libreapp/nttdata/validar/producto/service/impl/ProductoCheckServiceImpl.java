@@ -1,8 +1,8 @@
 package com.libreapp.nttdata.validar.producto.service.impl;
 
-import com.libreapp.nttdata.validar.producto.model.ProductoCheck;
 import com.libreapp.nttdata.validar.producto.repository.ProductoCheckRepository;
 import com.libreapp.nttdata.validar.producto.service.ProductoCheckService;
+import com.libreapp.nttdata.validar.producto.model.ProductoCheck;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

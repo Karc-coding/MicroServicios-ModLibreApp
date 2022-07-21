@@ -1,15 +1,32 @@
 services:
-  mysql:
-    image: mysql:8
-    ports:
-     - 3006:3306
-    volumes:
-     - ~/apps/mysql:/var/lib/mysql
+  postgres:
+    container_name: postgreslibapp
+    image: postgres
     environment:
-     - MYSQL_ROOT_PASSWORD=karc
-     - MYSQL_PASSWORD=12345
-     - MYSQL_USER=krojasco
-     - MYSQL_DATABASE=producto
+      POSTGRES_USER: krojasco
+      POSTGRES_PASSWORD: 12345
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5430:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadminlibapp
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5030:80"
+    networks:
+      - postgres
+    restart: unless-stopped
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkinlibapp
@@ -27,5 +44,11 @@ services:
       - spring
 
 networks:
+  postgres:
+    driver: bridge
   spring:
     driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:

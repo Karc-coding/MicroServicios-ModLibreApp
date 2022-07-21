@@ -15,10 +15,10 @@ INSERT INTO categories(id, name)
             (DEFAULT, 'Short stories'), (DEFAULT, 'Suspense'), (DEFAULT, 'Teens'), (DEFAULT, 'Thriller'), (DEFAULT, 'Western'), (DEFAULT, 'Young adults');
 
 INSERT INTO books(id, title, serie, year_book, categories_id, price, stock, authors_id)
-	VALUES 	(DEFAULT, 'Wutherings Heights', 'VJ21983', '1995', 13, 24.30, 75, NULL),
-			(DEFAULT, 'Are You There, Vodka? It´s Me, Chelsea', 'VJ95847', '2014', NULL, 15.00, 150, 5),
-			(DEFAULT, 'Great Expectations', 'VJ13090', NULL, 14, 54.20, 15, NULL),
+	VALUES 	(DEFAULT, 'Wutherings Heights', 'VJ21983', '1995', 13, 24.30, 75, 4),
+			(DEFAULT, 'Are You There, Vodka? It´s Me, Chelsea', 'VJ95847', '2014', 5, 15.00, 150, 5),
+			(DEFAULT, 'Great Expectations', 'VJ13090', NULL, 14, 54.20, 15, 10),
 			(DEFAULT, 'Collected Fiction', 'VJ65481', '1991', 24, 25.10, 49, 15),
-			(DEFAULT, 'To Kill a Mockingbird', 'VJ26548', NULL, NULL, 35.50, 30, NULL),
+			(DEFAULT, 'To Kill a Mockingbird', 'VJ26548', NULL, 9, 35.50, 30, 17),
 			(DEFAULT, 'Where the Wild Things Are', 'VJ90982', NULL, 15, 45.20, 75, 8),
 			(DEFAULT, 'One Hundred Years of Solitude ', 'VJ25461', '1953', 7, 102.00, 174, 24);
