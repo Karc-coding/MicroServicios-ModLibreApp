@@ -13,17 +13,17 @@ import java.io.IOException;
         basePackages = "com.libreapp.nttdata"
 )
 @EnableEurekaClient
-@SpringBootApplication
+@SpringBootApplication( scanBasePackages = {"com.libreapp.nttdata.producto", "com.libreapp.nttdata.queues"})
 public class ProductoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProductoApplication.class, args);
-        generarDatos();
+        //generarDatos();
     }
 
     static void generarDatos() {
         try {
             System.out.println("Ejecutando comando de insercion");
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/C", "docker", "exec", "-i", "postgreslibapp", "psql", "-U", "krojasco", "producto", "<", "C:\\Users\\Usuario\\Desktop\\bootcamp\\tarea_proyecto\\ModLibreApp\\producto\\src\\main\\resources\\data.sql");
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/C", "docker", "exec", "-i", "postgreslibapp", "psql", "-U", "krojasco", "producto", "<", "C:\\Users\\Usuario\\Desktop\\bootcamp\\tarea_proyecto\\ModLibreApp\\producto\\src\\main\\resources\\reback_data.sql");
             pb.start();
             System.out.println("Ejecucion finalizada");
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package com.libreapp.nttdata.producto.rabbitmq;
+package com.libreapp.nttdata.queues.rabbitmq;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

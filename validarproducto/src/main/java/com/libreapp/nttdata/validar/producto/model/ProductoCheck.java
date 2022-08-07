@@ -27,9 +27,6 @@ public class ProductoCheck {
     )
     private Integer id;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productoId;
-
     @Column(name = "product_serie", nullable = false)
     private String productoSerie;
 

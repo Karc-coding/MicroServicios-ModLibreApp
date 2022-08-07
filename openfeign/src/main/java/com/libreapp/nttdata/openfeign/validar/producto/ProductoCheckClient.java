@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("validarproducto")
 public interface ProductoCheckClient {
     @GetMapping(path = "api/v1/product-check")
-    public ProductoCheckResponse isRepeat(@RequestParam(name = "id") long id, @RequestParam(name = "serie") String serie);
+    public ProductoCheckResponse isRepeat(@RequestParam(name = "serie") String serie);
 }

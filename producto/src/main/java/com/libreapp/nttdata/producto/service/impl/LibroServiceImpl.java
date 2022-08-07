@@ -5,9 +5,9 @@ import com.libreapp.nttdata.openfeign.validar.producto.ProductoCheckClient;
 import com.libreapp.nttdata.openfeign.validar.producto.ProductoCheckResponse;
 import com.libreapp.nttdata.producto.controller.LibroRequest;
 import com.libreapp.nttdata.producto.model.Libro;
-import com.libreapp.nttdata.producto.rabbitmq.RabbitMQMessageProducer;
 import com.libreapp.nttdata.producto.repository.LibroRepository;
 import com.libreapp.nttdata.producto.service.LibroService;
+import com.libreapp.nttdata.queues.rabbitmq.RabbitMQMessageProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +28,12 @@ public class LibroServiceImpl implements LibroService {
 
     @Override
     public Libro createLibro(Libro libro) {
-        Libro book = repo.save(libro);
 
-        ProductoCheckResponse response = productoCheckClient.isRepeat(book.getId(), book.getSerie());
+        ProductoCheckResponse response = productoCheckClient.isRepeat(libro.getSerie());
         if (response.repetido()){
             throw new IllegalStateException("El libro ya existe!!");
         }
+        Libro book = repo.save(libro);
 
         NotificacionRequest notificacionRequest = new NotificacionRequest(libro.getId(),
                                                                         libro.getTitle(),

@@ -33,7 +33,7 @@ public class LibroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerProduct(@RequestBody Libro libro) {
+    public ResponseEntity<?> registerProduct(@Valid @RequestBody Libro libro) {
         log.info("Nuevo registro de producto {}", libro);
         Libro product = libroService.createLibro(libro);
         return new ResponseEntity<LibroRequest>(new LibroRequest(product.getId(), product.getTitle(), product.getSerie(), product.getYearBook(),

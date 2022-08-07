@@ -15,8 +15,17 @@ public class ProductoCheckServiceImpl implements ProductoCheckService {
     private ProductoCheckRepository repo;
 
     @Override
-    public boolean esRepetido(Long id, String serie) {
-        repo.save(ProductoCheck.builder().productoId(id).productoSerie(serie).repetido(false).fechaRegistro(new Date()).build());
-        return false;
+    public ProductoCheck getProductoCheck(String serie) {
+        return repo.findByProductoSerie(serie).orElse(null);
+    }
+
+    @Override
+    public boolean esRepetido(String serie) {
+        boolean repetido = true;
+        ProductoCheck productoCheck = getProductoCheck(serie);
+        if (productoCheck == null) { repetido = false; }
+
+        repo.save(ProductoCheck.builder().productoSerie(serie).repetido(repetido).fechaRegistro(new Date()).build());
+        return repetido;
     }
 }

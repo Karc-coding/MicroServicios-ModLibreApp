@@ -1,0 +1,28 @@
+server:
+  port: 8071
+spring:
+  application:
+    name: validarproducto
+  datasource:
+    password: 12345
+    url: jdbc:postgresql://localhost:5430/validarproducto
+    username: krojasco
+  jpa:
+    database : POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  zipkin:
+    base-url: http://localhost:9415
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8075/eureka
+    fetch-registry: true
+    register-with-eureka: true

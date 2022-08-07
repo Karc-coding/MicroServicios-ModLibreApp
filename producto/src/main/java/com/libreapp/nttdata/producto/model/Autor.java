@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Builder
@@ -25,6 +26,7 @@ public class Autor {
     @Column(name = "last_name", nullable = true, length = 50)
     private String lastName;
 
+    @NotEmpty(message = "{NotEmpty.autor.nickname}")
     @Column(nullable = false, length = 60)
     private String nickname;
 }
