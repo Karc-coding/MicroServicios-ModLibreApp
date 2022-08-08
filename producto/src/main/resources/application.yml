@@ -11,17 +11,17 @@ spring:
     database : POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         jdbc:
           lob:
             non_contextual_creation: true
-#  sql:
-#    init:
-#      mode: always
-#      schema-locations: classpath:bd/tablas.sql
-#      data-locations: classpath:bd/reback_data.sql
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:bd/tablas.sql
+      data-locations: classpath:bd/data.sql
   zipkin:
     base-url: http://localhost:9415
   rabbitmq:
@@ -32,3 +32,4 @@ eureka:
       defaultZone: http://localhost:8075/eureka
     fetch-registry: true
     register-with-eureka: true
+    enabled: false

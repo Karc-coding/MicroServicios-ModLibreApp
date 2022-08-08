@@ -42,27 +42,27 @@ services:
       - "15675:15672"
     networks:
       - spring
-  eureka-server:
-    image: karcxcoding/mod-eureka-server:latest
-    container_name: eureka-server-libapp
-    ports:
-      - "8075:8075"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-  apigateway:
-    image: karcxcoding/mod-apigateway:latest
-    container_name: apigateway-libapp
-    ports:
-      - "8074:8074"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka-server
+#  eureka-server:
+#    image: karcxcoding/mod-eureka-server:latest
+#    container_name: eureka-server-libapp
+#    ports:
+#      - "8075:8075"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#  apigateway:
+#    image: karcxcoding/mod-apigateway:latest
+#    container_name: apigateway-libapp
+#    ports:
+#      - "8074:8074"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka-server
   producto:
     image: karcxcoding/mod-producto:latest
     container_name: producto-libapp

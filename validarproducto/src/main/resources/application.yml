@@ -11,7 +11,7 @@ spring:
     database : POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         jdbc:
@@ -26,3 +26,4 @@ eureka:
       defaultZone: http://localhost:8075/eureka
     fetch-registry: true
     register-with-eureka: true
+    enabled: false
