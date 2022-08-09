@@ -6,7 +6,7 @@ spring:
   datasource:
     password: 12345
     url: jdbc:postgresql://postgreslibapp:5432/validarproducto
-    username: krojasco
+    username: libreapp
   jpa:
     database : POSTGRESQL
     show-sql: true

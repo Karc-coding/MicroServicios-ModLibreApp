@@ -6,7 +6,7 @@ spring:
   datasource:
     password: 12345
     url: jdbc:postgresql://postgreslibapp:5432/notificacion
-    username: krojasco
+    username: libreapp
   jpa:
     database : POSTGRESQL
     show-sql: true
@@ -20,7 +20,7 @@ spring:
   zipkin:
     base-url: http://zipkinlibapp:9411
   rabbitmq:
-    addresses: rabbitmqlibapp:5672
+    addresses: rabbitmq:5672
 eureka:
   client:
     service-url:
