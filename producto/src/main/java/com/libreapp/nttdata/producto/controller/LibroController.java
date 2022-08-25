@@ -36,8 +36,14 @@ public class LibroController {
     public ResponseEntity<?> registerProduct(@Valid @RequestBody Libro libro) {
         log.info("Nuevo registro de producto {}", libro);
         Libro product = libroService.createLibro(libro);
-        return new ResponseEntity<LibroRequest>(new LibroRequest(product.getId(), product.getTitle(), product.getSerie(), product.getYearBook(),
-                product.getCategoria(), product.getPrice(), product.getStock(), product.getAutor()), HttpStatus.OK);
+        String result = libroService.validateLibro(libro);
+        log.info("Resultado: " + result);
+        if (result.equals("OK")){
+            libroService.registerNotification(libro);
+            return new ResponseEntity<LibroRequest>(new LibroRequest(product.getId(), product.getTitle(), product.getSerie(), product.getYearBook(),
+                    product.getCategoria(), product.getPrice(), product.getStock(), product.getAutor()), HttpStatus.OK);
+        }
+        return new ResponseEntity("Servicio validarProducto no disponible", HttpStatus.OK);
     }
 
     @PutMapping

@@ -111,8 +111,8 @@ services:
       - config-server
 #      - eureka-server
   config-server:
-    image: karcxcoding/config-server:latest
-    container_name: config-server
+    image: karcxcoding/mod-config-server:latest
+    container_name: config-server-libreapp
     ports:
       - "8060:8060"
     environment:

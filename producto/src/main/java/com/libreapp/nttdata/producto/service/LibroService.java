@@ -9,6 +9,8 @@ public interface LibroService {
 
     public List<Libro> listAll();
     public Libro createLibro(Libro libro);
+    public String validateLibro(Libro libro);
+    public void registerNotification(Libro libro);
     public Libro updateLibro(LibroRequest libroRequest);
     public Libro deleteLibro(long id);
     public Libro getLibro(long id);

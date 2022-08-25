@@ -8,11 +8,15 @@ import com.libreapp.nttdata.producto.model.Libro;
 import com.libreapp.nttdata.producto.repository.LibroRepository;
 import com.libreapp.nttdata.producto.service.LibroService;
 import com.libreapp.nttdata.queues.rabbitmq.RabbitMQMessageProducer;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @AllArgsConstructor
 @Service
 public class LibroServiceImpl implements LibroService {
@@ -28,25 +32,36 @@ public class LibroServiceImpl implements LibroService {
 
     @Override
     public Libro createLibro(Libro libro) {
+        return repo.save(libro);
+    }
 
+    @CircuitBreaker(name = "validatelibroCB", fallbackMethod = "fallValidateLibroCB")
+    @Retry(name = "validatelibroRetry")
+    public String validateLibro(Libro libro) {
+        log.info("Inicio etodo validateLibro");
         ProductoCheckResponse response = productoCheckClient.isRepeat(libro.getSerie());
         if (response.repetido()){
             throw new IllegalStateException("El libro ya existe!!");
         }
-        Libro book = repo.save(libro);
+        return "OK";
+    }
 
+    public String fallValidateLibroCB(Libro libro, Exception e) {
+        return "NO_OK";
+    }
+
+    public void registerNotification(Libro libro) {
         NotificacionRequest notificacionRequest = new NotificacionRequest(libro.getId(),
-                                                                        libro.getTitle(),
-                                                                        libro.getCategoria().getName(),
-                                                                        libro.getAutor().getNickname(),
-                                                                "El producto con serie " + libro.getSerie() + " ha sido registrado");
+                libro.getTitle(),
+                libro.getCategoria().getName(),
+                libro.getAutor().getNickname(),
+                "El producto con serie " + libro.getSerie() + " ha sido registrado");
 
         rabbitMQMessageProducer.publish(
                 notificacionRequest,
                 "internal.exchange",
                 "internal.notification.routing-key"
         );
-        return book;
     }
 
     @Override
