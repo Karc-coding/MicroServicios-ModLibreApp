@@ -17,11 +17,11 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-#  sql:
-#    init:
-#      mode: always
-#      schema-locations: classpath:bd/tablas.sql
-#      data-locations: classpath:bd/data.sql
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:bd/tablas.sql
+      data-locations: classpath:bd/data.sql
   zipkin:
     base-url: http://zipkinlibapp:9411
   rabbitmq:
