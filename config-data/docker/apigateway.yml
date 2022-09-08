@@ -11,18 +11,37 @@ spring:
           uri: lb://PRODUCTO
           predicates:
             - Path=/api/v1/product/**
+          filters:
+            - AutorizacionFilter
         - id: producto
           uri: lb://PRODUCTO
           predicates:
             - Path=/api/v1/author/**
+          filters:
+            - AutorizacionFilter
         - id: producto
           uri: lb://PRODUCTO
           predicates:
             - Path=/api/v1/category/**
+          filters:
+            - AutorizacionFilter
         - id: validarproducto
           uri: lb://VALIDARPRODUCTO
           predicates:
             - Path=/api/v1/product-check/**
+          filters:
+            - AutorizacionFilter
+        - id: validarproducto
+          uri: lb://VALIDARPRODUCTO
+          predicates:
+            - Path=/api/v1/product-check/**
+          filters:
+            - AutorizacionFilter
+        - id: autenticacion
+          uri: lb://AUTENTICACION
+          predicates:
+            - Path=/api/v1/autenticacion/**
+
 
 eureka:
   client:
