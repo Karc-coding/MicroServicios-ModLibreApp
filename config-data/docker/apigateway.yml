@@ -36,7 +36,6 @@ spring:
           predicates:
             - Path=/api/v1/autenticacion/**
 
-
 eureka:
   client:
     service-url:
