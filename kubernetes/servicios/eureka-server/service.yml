@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka-server
+  name: eureka-server-libapp
 spec:
   selector:
     app: eureka-server
