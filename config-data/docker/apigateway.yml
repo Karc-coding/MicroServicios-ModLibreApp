@@ -1,0 +1,32 @@
+server:
+  port: 8074
+
+spring:
+  zipkin:
+    base-url: http://zipkinlibapp:9411
+  cloud:
+    gateway:
+      routes:
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/product/**
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/author/**
+        - id: producto
+          uri: lb://PRODUCTO
+          predicates:
+            - Path=/api/v1/category/**
+        - id: validarproducto
+          uri: lb://VALIDARPRODUCTO
+          predicates:
+            - Path=/api/v1/product-check/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server-libapp:8075/eureka
+    fetch-registry: true
+    register-with-eureka: true

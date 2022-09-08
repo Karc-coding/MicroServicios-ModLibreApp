@@ -1,11 +1,9 @@
 server:
-  port: 8071
+  port: 8050
 spring:
-  application:
-    name: validarproducto
   datasource:
     password: 12345
-    url: jdbc:postgresql://localhost:5430/validarproducto
+    url: jdbc:postgresql://localhost:5430/autenticacion
     username: krojasco
   jpa:
     database : POSTGRESQL
@@ -27,3 +25,17 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 #    enabled: false
+
+jwt:
+  secret: secret
+
+admin-paths:
+  paths:
+    - uri: "/api/v1/product"
+      method: "POST"
+    - uri: "/api/v1/product"
+      method: "PUT"
+    - uri: "/api/v1/product/{1}[1-9]+[0-9]*"
+      method: "DELETE"
+    - uri: "/api/v1/product-check/{1}[1-9]+[0-9]*"
+      method: "GET"

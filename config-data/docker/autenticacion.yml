@@ -1,11 +1,9 @@
 server:
-  port: 8072
+  port: 8050
 spring:
-  application:
-    name: notificacion
   datasource:
     password: 12345
-    url: jdbc:postgresql://postgreslibapp:5432/notificacion
+    url: jdbc:postgresql://postgreslibapp:5432/autenticacion
     username: krojasco
   jpa:
     database : POSTGRESQL
@@ -19,8 +17,7 @@ spring:
             non_contextual_creation: true
   zipkin:
     base-url: http://zipkinlibapp:9411
-  rabbitmq:
-    addresses: rabbitmqlibapp:5672
+
 eureka:
   client:
     service-url:
@@ -29,10 +26,16 @@ eureka:
     register-with-eureka: true
 #    enabled: false
 
-rabbitmq:
-  exchanges:
-    internal: internal.exchange
-  queues:
-    notification: notificacion.queue
-  routing-keys:
-    internal-notification: internal.notification.routing-key
+jwt:
+  secret: secret
+
+admin-paths:
+  paths:
+    - uri: "/api/v1/product"
+      method: "POST"
+    - uri: "/api/v1/product"
+      method: "PUT"
+    - uri: "/api/v1/product/{1}[1-9]+[0-9]*"
+      method: "DELETE"
+    - uri: "/api/v1/product-check/{1}[1-9]+[0-9]*"
+      method: "GET"
