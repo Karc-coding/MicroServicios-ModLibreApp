@@ -26,6 +26,13 @@ spring:
     base-url: http://localhost:9415
   rabbitmq:
     addresses: localhost:5675
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topic:
+      name: libnotificacionkafka
 eureka:
   client:
     service-url:

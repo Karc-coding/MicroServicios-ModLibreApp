@@ -1,0 +1,39 @@
+server:
+  port: 8073
+spring:
+  datasource:
+    password: 12345
+    url: jdbc:postgresql://localhost:5430/notificacionkafka
+    username: krojasco
+  jpa:
+    database : POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  zipkin:
+    base-url: http://localhost:9415
+  rabbitmq:
+    addresses: localhost:5675
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: notificacion
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+    topic:
+      name: libnotificacionkafka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8075/eureka
+    fetch-registry: true
+    register-with-eureka: true
+#    enabled: false

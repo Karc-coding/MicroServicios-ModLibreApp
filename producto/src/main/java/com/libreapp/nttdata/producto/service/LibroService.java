@@ -11,6 +11,7 @@ public interface LibroService {
     public Libro createLibro(Libro libro);
     public String validateLibro(Libro libro);
     public void registerNotification(Libro libro);
+    public void registerNotificationKafka(Libro libro);
     public Libro updateLibro(LibroRequest libroRequest);
     public Libro deleteLibro(long id);
     public Libro getLibro(long id);

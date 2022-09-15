@@ -40,6 +40,7 @@ public class LibroController {
         log.info("Resultado: " + result);
         if (result.equals("OK")){
             libroService.registerNotification(libro);
+            libroService.registerNotificationKafka(libro);
             return new ResponseEntity<LibroRequest>(new LibroRequest(product.getId(), product.getTitle(), product.getSerie(), product.getYearBook(),
                     product.getCategoria(), product.getPrice(), product.getStock(), product.getAutor()), HttpStatus.OK);
         }
